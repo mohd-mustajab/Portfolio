@@ -12,6 +12,15 @@ const Project = () => {
       <div className="heading">My Works..</div>
         <div className='project-head'>Data Science Projects</div>
          <div className="projects">
+          <Card className='card'>
+          <Card.Body>
+            <Card.Title>College Helpdesk Chatbot</Card.Title>
+            <Card.Text>
+            Ask the queries about your college.
+            </Card.Text>
+            <a href="https://t.me/CollegeHelpdesk_bymj_Bot/" target='_blank'><button className="btn">Visit</button></a>
+          </Card.Body>
+        </Card>
         <Card className='card'>
           <Card.Body>
             <Card.Title>IPL Win Prediction</Card.Title>
@@ -36,15 +45,6 @@ const Project = () => {
 
         <div className='project-head'>Full Stack Web Development Projects</div>
       <div className="projects">
-        <Card className='card'>
-          <Card.Body>
-            <Card.Title>College Helpdesk Chatbot</Card.Title>
-            <Card.Text>
-            Ask the queries about your college.
-            </Card.Text>
-            <a href="https://t.me/CollegeHelpdesk_bymj_Bot/" target='_blank'><button className="btn">Visit</button></a>
-          </Card.Body>
-        </Card>
         <Card className='card'>
           <Card.Body>
             <Card.Title>Travel Chatbot</Card.Title>
