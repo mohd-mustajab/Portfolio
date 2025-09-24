@@ -38,6 +38,15 @@ const Project = () => {
       <div className="projects">
         <Card className='card'>
           <Card.Body>
+            <Card.Title>College Helpdesk Chatbot</Card.Title>
+            <Card.Text>
+            Ask the queries about your college.
+            </Card.Text>
+            <a href="https://t.me/CollegeHelpdesk_bymj_Bot/" target='_blank'><button className="btn">Visit</button></a>
+          </Card.Body>
+        </Card>
+        <Card className='card'>
+          <Card.Body>
             <Card.Title>Travel Chatbot</Card.Title>
             <Card.Text>
             Ask the queries about your journey.
