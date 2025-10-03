@@ -23,6 +23,15 @@ const Project = () => {
         </Card>
         <Card className='card'>
           <Card.Body>
+            <Card.Title>Titanic Survival Prediction</Card.Title>
+            <Card.Text>
+            Predict the survival of passengers on the Titanic.
+            </Card.Text>
+            <a href="https://titanic-survival-predictor-da-project-by-mj.streamlit.app/" target='_blank'><button className="btn">Visit</button></a>
+          </Card.Body>
+        </Card> 
+        <Card className='card'>
+          <Card.Body>
             <Card.Title>IPL Win Prediction</Card.Title>
             <Card.Text>
             Predict the win probability of the team in IPL match.
