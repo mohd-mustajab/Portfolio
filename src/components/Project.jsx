@@ -60,7 +60,7 @@ const Project = () => {
             <Card.Text>
             Ask the queries about your journey.
             </Card.Text>
-            <a href="https://ai-chatbot-frontend-nlc8.onrender.com/" target='_blank'><button className="btn">Visit</button></a>
+            <a href="https://ai-chatbot-five-murex.vercel.app/" target='_blank'><button className="btn">Visit</button></a>
           </Card.Body>
         </Card>
         <Card className='card'>
