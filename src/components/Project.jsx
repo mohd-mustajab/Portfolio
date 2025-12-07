@@ -14,6 +14,15 @@ const Project = () => {
          <div className="projects">
           <Card className='card'>
           <Card.Body>
+            <Card.Title>Car Model Prediction</Card.Title>
+            <Card.Text>
+            A machine learning and deep learning-based application that predicts car models based on user inputs.
+            </Card.Text>
+            <a href="https://car-model-detection-bymj.streamlit.app/" target='_blank'><button className="btn">Visit</button></a>
+          </Card.Body>
+        </Card>
+          <Card className='card'>
+          <Card.Body>
             <Card.Title>College Helpdesk Chatbot</Card.Title>
             <Card.Text>
             Ask the queries about your college.
