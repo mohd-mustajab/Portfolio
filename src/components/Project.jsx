@@ -32,7 +32,7 @@ const Project = () => {
         </Card>
           <Card className='card'>
           <Card.Body>
-            <Card.Title>Machine Learning Prediction App</Card.Title>
+            <Card.Title>ML Prediction App</Card.Title>
             <Card.Text>
             An application that utilizes machine learning algorithms to make predictions based on user-provided data.
             </Card.Text>
