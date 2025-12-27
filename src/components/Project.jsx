@@ -30,6 +30,24 @@ const Project = () => {
             <a href="https://t.me/CollegeHelpdesk_bymj_Bot/" target='_blank'><button className="btn">Visit</button></a>
           </Card.Body>
         </Card>
+          <Card className='card'>
+          <Card.Body>
+            <Card.Title>Machine Learning Prediction App</Card.Title>
+            <Card.Text>
+           Machine Learning Prediction App A Streamlit-based end-to-end machine learning system that allows users to select datasets, choose algorithms, run predictions, compare trained models, and explore datasets with built-in EDA tools
+            </Card.Text>
+            <a href="https://machine-learning-prediction-app-by-mj.streamlit.app/" target='_blank'><button className="btn">Visit</button></a>
+          </Card.Body>
+        </Card>
+          <Card className='card'>
+          <Card.Body>
+            <Card.Title>College Helpdesk Chatbot</Card.Title>
+            <Card.Text>
+            Ask the queries about your college.
+            </Card.Text>
+            <a href="https://t.me/CollegeHelpdesk_bymj_Bot/" target='_blank'><button className="btn">Visit</button></a>
+          </Card.Body>
+        </Card>
         <Card className='card'>
           <Card.Body>
             <Card.Title>Titanic Survival Prediction</Card.Title>
