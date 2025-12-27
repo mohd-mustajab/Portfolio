@@ -34,7 +34,7 @@ const Project = () => {
           <Card.Body>
             <Card.Title>ML Prediction App</Card.Title>
             <Card.Text>
-            An application that utilizes machine learning algorithms to make predictions based on user-provided data.
+            A machine learning-based web application that provides predictions based on user inputs.
             </Card.Text>
             <a href="https://machine-learning-prediction-app-by-mj.streamlit.app/" target='_blank'><button className="btn">Visit</button></a>
           </Card.Body>
