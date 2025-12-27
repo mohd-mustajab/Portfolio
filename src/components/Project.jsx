@@ -34,7 +34,7 @@ const Project = () => {
           <Card.Body>
             <Card.Title>Machine Learning Prediction App</Card.Title>
             <Card.Text>
-           Machine Learning Prediction App A Streamlit-based end-to-end machine learning system that allows users to select datasets, choose algorithms, run predictions, compare trained models, and explore datasets with built-in EDA tools
+            An application that utilizes machine learning algorithms to make predictions based on user-provided data.
             </Card.Text>
             <a href="https://machine-learning-prediction-app-by-mj.streamlit.app/" target='_blank'><button className="btn">Visit</button></a>
           </Card.Body>
