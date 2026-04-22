@@ -26,7 +26,7 @@ const Contact = () => {
     setIsSending(true);
 
     emailjs
-      .send('service_0bm968f', 'template_livmhmm', templateParams, {
+      .send('service_od3l5vk', 'template_livmhmm', templateParams, {
         publicKey: 'oshirECPffq6jKUQz',
       })
       .then(
