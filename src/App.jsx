@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useMemo, useRef } from "react";
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   FiArrowDownRight,
@@ -53,7 +53,7 @@ const statIcons = [FiBarChart2, FiTrendingUp, FiCpu];
 function App() {
   const prefersReducedMotion = useReducedMotion();
   const heroRef = useRef(null);
-  const formRef = useRef(null);
+  const [isSending, setIsSending] = useState(false);
   const { scrollYProgress } = useScroll();
   const progressScale = useSpring(scrollYProgress, {
     stiffness: 110,
@@ -116,9 +116,24 @@ function App() {
 
   const sendEmail = (event) => {
     event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const templateParams = {
+      name: formData.get("name")?.toString().trim() || "",
+      email: formData.get("email")?.toString().trim() || "",
+      phone: formData.get("phone")?.toString().trim() || "",
+      sub: formData.get("sub")?.toString().trim() || "",
+      msg: formData.get("msg")?.toString().trim() || "",
+      from_name: formData.get("name")?.toString().trim() || "",
+      reply_to: formData.get("email")?.toString().trim() || "",
+      subject: formData.get("sub")?.toString().trim() || "",
+      message: formData.get("msg")?.toString().trim() || "",
+    };
+
+    setIsSending(true);
 
     emailjs
-      .sendForm("service_0bm968f", "template_livmhmm", formRef.current, {
+      .send("service_0bm968f", "template_livmhmm", templateParams, {
         publicKey: "oshirECPffq6jKUQz",
       })
       .then(
@@ -131,19 +146,29 @@ function App() {
             color: "#f4ffff",
             confirmButtonColor: "#28cccc",
           });
-          event.target.reset();
+          form.reset();
         },
-        () => {
+        (error) => {
+          const errorMessage =
+            error?.text ||
+            error?.message ||
+            (error?.status ? `Email service returned status ${error.status}.` : "") ||
+            "Please verify your EmailJS service, template, public key, and allowed origins.";
+
+          console.error("EmailJS send failed:", error);
           Swal.fire({
             title: "Something went wrong",
-            text: "The message could not be sent right now. Please try again shortly.",
+            text: errorMessage,
             icon: "error",
             background: "#071317",
             color: "#f4ffff",
             confirmButtonColor: "#28cccc",
           });
         },
-      );
+      )
+      .finally(() => {
+        setIsSending(false);
+      });
   };
 
   return (
@@ -475,7 +500,7 @@ function App() {
               </div>
             </article>
 
-            <form ref={formRef} className="contact-form glass-panel" onSubmit={sendEmail}>
+            <form className="contact-form glass-panel" onSubmit={sendEmail}>
               <label>
                 <span>Name</span>
                 <input type="text" name="name" placeholder="Your name" required />
@@ -486,7 +511,7 @@ function App() {
               </label>
               <label>
                 <span>Phone</span>
-                <input type="text" name="phone" placeholder="+91" required />
+                <input type="text" name="phone" placeholder="+91" />
               </label>
               <label>
                 <span>Subject</span>
@@ -496,8 +521,8 @@ function App() {
                 <span>Message</span>
                 <textarea name="msg" rows="5" placeholder="Tell me about the opportunity..." required />
               </label>
-              <button className="primary-button submit-button" type="submit">
-                Send Message
+              <button className="primary-button submit-button" type="submit" disabled={isSending}>
+                {isSending ? "Sending..." : "Send Message"}
                 <FiArrowDownRight />
               </button>
             </form>
