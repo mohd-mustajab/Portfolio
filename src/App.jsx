@@ -118,7 +118,7 @@ function App() {
     event.preventDefault();
 
     emailjs
-      .sendForm("service_myr3z7", "template_livmhmm", formRef.current, {
+      .sendForm("service_0bm968f", "template_livmhmm", formRef.current, {
         publicKey: "oshirECPffq6jKUQz",
       })
       .then(
