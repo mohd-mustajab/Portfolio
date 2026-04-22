@@ -1,48 +1,100 @@
-import React, { useState } from 'react';
-import "./Navbar.css"
-import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 
-const Navbar = () => {
+import "./Navbar.css";
+
+const links = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Contact", href: "#contact" },
+];
+
+function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  const OpenSB = () => {
-    setSidebarOpen(true);
-  };
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.getElementById(link.href.replace("#", "")))
+      .filter(Boolean);
 
-  const CloseSB = () => {
-    setSidebarOpen(false);
-  };
-return (
-  <>
-      <div id='loader'></div>
-      <nav className="nav">
-        <div className="name">
-          Portfolio<b>.</b>
+    if (!sections.length) {
+      return undefined;
+    }
+
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + window.innerHeight * 0.32;
+
+      let currentSection = sections[0].id;
+
+      sections.forEach((section) => {
+        if (scrollPosition >= section.offsetTop) {
+          currentSection = section.id;
+        }
+      });
+
+      setActiveSection(currentSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
+
+  return (
+    <header className="site-header">
+      <nav className="nav-shell">
+        <a className="brand-mark" href="#home" aria-label="Go to top">
+          Portfolio<span>.</span>
+        </a>
+
+        <div className="nav-links">
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className={activeSection === link.href.replace("#", "") ? "is-active" : ""}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
-        
-        <ul className='NavLinks'>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/"><li>Home</li></NavLink>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/About"><li>About</li></NavLink>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/Contact"><li>Contact</li></NavLink>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/Project"><li>Projects</li></NavLink>
-        </ul>
-        <div id="OpenSB" onClick={OpenSB}><IoMdMenu /></div>
-        <div id="sidebar" style={{ display: sidebarOpen ? 'flex' : 'none' }}>
-          <div id="cross" onClick={CloseSB}><RxCross2 /></div>
-          <div className="SidebarLinks">
-          <ul>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/"><li>Home</li></NavLink>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/About"><li>About</li></NavLink>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/Contact"><li>Contact</li></NavLink>
-          <NavLink className={(e) => { return e.isActive ? "Linkcolor" : "" }} to="/Project"><li>Projects</li></NavLink>
-        </ul>
-          </div>
-        </div>
+
+        <a className="nav-cta" href="#contact">
+          Let&apos;s Talk
+        </a>
+
+        <button className="menu-button" type="button" onClick={() => setSidebarOpen(true)} aria-label="Open menu">
+          <IoMdMenu />
+        </button>
       </nav>
-    </>
-  )
+
+      <div className={`mobile-panel ${sidebarOpen ? "open" : ""}`}>
+        <button className="menu-close" type="button" onClick={() => setSidebarOpen(false)} aria-label="Close menu">
+          <RxCross2 />
+        </button>
+        {links.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            className={activeSection === link.href.replace("#", "") ? "is-active" : ""}
+            onClick={() => setSidebarOpen(false)}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </header>
+  );
 }
 
-export default Navbar
+export default Navbar;

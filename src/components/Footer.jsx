@@ -1,54 +1,64 @@
-import React from 'react'
-import "./Footer.css"
-import { NavLink } from 'react-router-dom';
-import { IoLogoInstagram } from "react-icons/io5";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { FaLocationDot } from "react-icons/fa6";
-import { LuMail } from "react-icons/lu";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { MdOutlineLocationOn } from "react-icons/md";
+
+import "./Footer.css";
+import { personalInfo } from "../data/portfolioData";
+
+const footerLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
 
 function Footer() {
   return (
-    <footer>
-  <div className="footer">
-    <div className="cards one">
-      <h1>mj.<b>..</b></h1>
-    </div>
-    <div className="cards two">
-      <h1>Menu</h1>
-      <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/About">About</NavLink></li>
-      <li><NavLink to="/Contact">Contact</NavLink></li>
-      <li><NavLink to="/Project">Project</NavLink></li>
-    </div>
-    <div className="cards three">
-      <h1>Address</h1>
-      <p><FaLocationDot/> Shastripuram,Hyderabad 500052</p>
-    </div>
-  
-    <div className="cards four">
-    <div className="sm2"><a href="https://www.instagram.com/mj__this_side/" target="_blank"><IoLogoInstagram /></a>
-            <a href="https://www.facebook.com/mohdmustjab.khan" target="_blank"><FaFacebook /></a>
-            <a href="https://www.linkedin.com/in/mohd-mustajab-174374271/" target="_blank"><FaLinkedin /></a>
-            <a href="https://github.com/mohd-mustajab" target="_blank"><FaGithub /></a>
-            <a href="https://twitter.com/MohdMustajab002" target="_blank"><FaSquareXTwitter /></a>
+    <footer className="site-footer">
+      <div className="footer-grid">
+        <div className="footer-brand">
+          <span className="footer-kicker">Portfolio</span>
+          <h2>{personalInfo.name}</h2>
+          <p>{personalInfo.tagline}</p>
+        </div>
+
+        <div className="footer-links">
+          <span className="footer-kicker">Navigate</span>
+          {footerLinks.map((link) => (
+            <a key={link.label} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <div className="footer-contact">
+          <span className="footer-kicker">Reach Out</span>
+          <p>
+            <MdOutlineLocationOn />
+            {personalInfo.location}
+          </p>
+          <a href={`mailto:${personalInfo.email}`}>
+            <FiMail />
+            {personalInfo.email}
+          </a>
+          <div className="footer-socials">
+            <a href="https://github.com/mohd-mustajab" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <FiGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/mohd-mustajab-174374271/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FiLinkedin />
+            </a>
           </div>
-    </div>
-    <div className="cards five">
-      <h1>Email</h1>
-      <p><LuMail /> mohdmustajab002@gmail.com </p>
-    </div>
-    <div className="cards six">
-      <h1>Phone</h1>
-      <p><FaPhoneAlt /> +918077144723 </p>
-    </div>
-    </div>
-  <div className="copyright">copyright © Developed by<b>MUSTAJAB</b></div>
-</footer>
-  )
+        </div>
+      </div>
+
+      <div className="footer-bottom">Copyright (c) {new Date().getFullYear()} Developed by MUSTAJAB</div>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;
