@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 import "./Navbar.css";
 
@@ -10,10 +11,11 @@ const links = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Certificates", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
-function Navbar() {
+function Navbar({ theme, onTheme }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -54,7 +56,7 @@ function Navbar() {
     <header className="site-header">
       <nav className="nav-shell">
         <a className="brand-mark" href="#home" aria-label="Go to top">
-          Portfolio<span>.</span>
+          MJ<span>.</span>
         </a>
 
         <div className="nav-links">
@@ -69,9 +71,9 @@ function Navbar() {
           ))}
         </div>
 
-        <a className="nav-cta" href="#contact">
-          Let&apos;s Talk
-        </a>
+        <button className="theme-button" type="button" onClick={onTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
+          {theme === "dark" ? <FiSun /> : <FiMoon />}
+        </button>
 
         <button className="menu-button" type="button" onClick={() => setSidebarOpen(true)} aria-label="Open menu">
           <IoMdMenu />
@@ -81,6 +83,9 @@ function Navbar() {
       <div className={`mobile-panel ${sidebarOpen ? "open" : ""}`}>
         <button className="menu-close" type="button" onClick={() => setSidebarOpen(false)} aria-label="Close menu">
           <RxCross2 />
+        </button>
+        <button className="mobile-theme" type="button" onClick={onTheme}>
+          {theme === "dark" ? <FiSun /> : <FiMoon />} {theme === "dark" ? "Light mode" : "Dark mode"}
         </button>
         {links.map((link) => (
           <a
